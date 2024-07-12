@@ -1,0 +1,25 @@
+syntax = "proto3";
+package forum;
+
+message Msg {
+    string id = 1;
+    string name = 2;
+    string comment = 3;
+}
+
+message Req {
+    string forum_id = 1;
+}
+
+message Forum {
+    string forum_id = 1;
+    string subject_name = 2;
+    repeated Msg post_data = 3;
+  }
+
+message Empty {}
+
+service ForumReq {
+    rpc GetMsg (Req) returns (Forum);
+    // rpc SendMsg (Msg) returns (Empty);
+}
