@@ -12,14 +12,14 @@ export default function PostEdit(props: Props) {
   return (
     <>
       <div className="flex flex-col justify-center items-start w-full gap-2 p-4">
-        <div className="w-6/12">
-          <input
-            type="text"
-            id="name"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2.5"
-            placeholder="名前を入力"
-          />
-        </div>
+        {/* <div className="w-6/12"> */}
+        {/*   <input */}
+        {/*     type="text" */}
+        {/*     id="name" */}
+        {/*     className="bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2.5" */}
+        {/*     placeholder="名前を入力" */}
+        {/*   /> */}
+        {/* </div> */}
         <div className="w-full">
           <textarea
             id="comment"
