@@ -7,7 +7,7 @@ type Props = {
 export default function ChatSummary(props: Props) {
   return (
     <>
-      <Link to={"/forum/1"}>
+      <Link to={"/chat/channel1"}>
         <div className="w-auto h-96 border p-3 flex flex-col items-center justify-around">
           <div className="w-10/12 h-4/6 border bg-zinc-100 opacity-75">
             image

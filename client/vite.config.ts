@@ -1,7 +1,3 @@
-// Vitestの型を追加する
-/// <reference types="vitest" />
-/// <reference types="vite/client" />
-
 import { vitePlugin as remix } from "@remix-run/dev";
 import { defineConfig } from "vite";
 import tsconfigPaths from "vite-tsconfig-paths";
@@ -18,9 +14,16 @@ export default defineConfig({
     }),
     tsconfigPaths(),
   ],
-  test: {
-    globals: true,
-    environment: "jsdom",
-    setupFiles: ["/app/__tests__/vitest-setup.ts"],
-  },
+  // test: {
+  //   globals: true,
+  //   environment: "jsdom",
+  //   setupFiles: ["/app/__tests__/vitest-setup.ts"],
+  //   includeSource: ["app/**/*.{ts,tsx}"],
+  //   exclude: ["node_modules", "e2e"],
+  // },
+  // resolve: {
+  //   alias: {
+  //     "~": path.resolve(__dirname, "app"),
+  //   },
+  // },
 });

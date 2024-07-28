@@ -14,30 +14,34 @@ export const meta: MetaFunction = () => {
   ];
 };
 
-export const clientLoader = async ({ params }: LoaderFunctionArgs) => {
-  const transport = createGrpcWebTransport({
-    baseUrl: "http://localhost:50051",
-  });
-  const client = createPromiseClient(Greeter, transport);
-
-  // PartialMessageを使用してリクエストメッセージのオブジェクトを定義
-  const name = params?.name || "No Name";
-  const person: PartialMessage<Person> = { name };
-
-  const greetingMessage: GreetingMessage = await client.sayHello(person);
-  console.log("greetingMessage: ", greetingMessage);
-  return greetingMessage;
-};
+// export const clientLoader = async ({ params }: LoaderFunctionArgs) => {
+//   const transport = createGrpcWebTransport({
+//     baseUrl: "http://localhost:50051",
+//   });
+//   const client = createPromiseClient(Greeter, transport);
+//
+//   // PartialMessageを使用してリクエストメッセージのオブジェクトを定義
+//   const name = params?.name || "No Name";
+//   const person: PartialMessage<Person> = { name };
+//
+//   const greetingMessage: GreetingMessage = await client.sayHello(person);
+//   console.log("greetingMessage: ", greetingMessage);
+//   return greetingMessage;
+// };
 
 export default function Index() {
-  const greetingMessage = useLoaderData<typeof clientLoader>();
+  // const greetingMessage = useLoaderData<typeof clientLoader>();
   return (
     <>
       <div className="w-full my-16 text-center">
         <h1 className="text-2xl animate-focus-in-contract">
-          {greetingMessage?.text}
+          {/* {greetingMessage?.text} */}
+          {`Hello ${localStorage.getItem("userName") || "Guest"}...`}
         </h1>
       </div>
+      <Link to={"/chat/channel1"}>
+        <div>aaaaaaaaa</div>
+      </Link>
       <div className="grid grid-cols-3 gap-8">
         <div className="animate-fade-in">
           <ChatSummary comment={"これは一行目です。\nこれは改行されます。"} />
