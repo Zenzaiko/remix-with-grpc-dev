@@ -87,7 +87,13 @@ export default function ChatArea() {
     <>
       <div className="border shadow">
         <div className="h-96 p-6">
-          <div className="w-full h-full bg-zinc-100 opacity-75">image</div>
+          <div className="w-full h-full bg-zinc-100 opacity-75 flex flex-row justify-around">
+            <img
+              src="/public/images/animal_kiboshi_iwa_hyrax.png"
+              alt="MyAvatar"
+            />
+            <img src="/public/images/animal_wani_water.png" alt="Friend" />
+          </div>
         </div>
         <div className="flex flex-col gap-4 px-4">
           {messages.map((msg) => (
