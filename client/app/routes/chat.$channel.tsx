@@ -67,7 +67,6 @@ export const clientAction = async ({
 export default function ChatArea() {
   const { stream } = useLoaderData<typeof clientLoader>();
   const [messages, setMessages] = useState<Msg[]>([]);
-  console.debug(stream);
   const params = useParams();
 
   useEffect(() => {
@@ -92,7 +91,13 @@ export default function ChatArea() {
               src="/public/images/animal_kiboshi_iwa_hyrax.png"
               alt="MyAvatar"
             />
-            <img src="/public/images/animal_wani_water.png" alt="Friend" />
+            <img
+              src="/public/images/animal_wani_water.png"
+              alt="Friend"
+              style={{
+                viewTransitionName: `friend-pic-${params.channel}`,
+              }}
+            />
           </div>
         </div>
         <div className="flex flex-col gap-4 px-4">

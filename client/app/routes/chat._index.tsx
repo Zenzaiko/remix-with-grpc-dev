@@ -9,6 +9,11 @@ export const meta: MetaFunction = () => {
 };
 
 export default function Index() {
+  const comments = Array.from({ length: 9 }, (_, i) => ({
+    channel: i + 1,
+    comment: `このコメントはサンプルです。\nこれは改行されます。${i + 1}`,
+  }));
+
   return (
     <>
       <div className="w-full my-16 text-center">
@@ -17,28 +22,11 @@ export default function Index() {
         </h1>
       </div>
       <div className="grid grid-cols-3 gap-8">
-        <div className="animate-fade-in">
-          <ChatSummary comment={"これは一行目です。\nこれは改行されます。"} />
-        </div>
-        <div className="animate-fade-in">
-          <ChatSummary
-            comment={"このコメントはサンプルです。\nこれは改行されます。"}
-          />
-        </div>
-        <div className="animate-fade-in">
-          <ChatSummary comment={"これは一行目です。\nこれは改行されます。"} />
-        </div>
-        <div className="animate-fade-in">
-          <ChatSummary comment={"これは一行目です。\nこれは改行されます。"} />
-        </div>
-        <div className="animate-fade-in">
-          <ChatSummary
-            comment={"このコメントはサンプルです。\nこれは改行されます。"}
-          />
-        </div>
-        <div className="animate-fade-in">
-          <ChatSummary comment={"これは一行目です。\nこれは改行されます。"} />
-        </div>
+        {comments.map((comment) => (
+          <div className="animate-fade-in" key={`channel${comment.channel}`}>
+            <ChatSummary channel={comment.channel} comment={comment.comment} />
+          </div>
+        ))}
       </div>
     </>
   );

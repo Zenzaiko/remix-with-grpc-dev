@@ -3,6 +3,28 @@
 @tailwind utilities;
 
 @layer base {
+  * {
+    @apply border-border;
+    @view-transition {
+      navigation: auto;
+    }
+    @keyframes _fade-in {
+      0% {
+        opacity: 0;
+      }
+    }
+    @keyframes _fade-out {
+      to {
+        opacity: 0;
+      }
+    }
+    ::view-transition-old(root) {
+      animation: _fade-out 0.15s 60ms both;
+    }
+    ::view-transition-new(root) {
+      animation: _fade-in 0.15s 60ms both;
+    }
+  }
   :root {
     --background: 0 0% 100%;
     --foreground: 240 10% 3.9%;
@@ -56,12 +78,6 @@
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
-  }
-}
-
-@layer base {
-  * {
-    @apply border-border;
   }
   body {
     @apply bg-background text-foreground;
