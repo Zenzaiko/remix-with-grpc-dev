@@ -1,35 +1,35 @@
-import { Outlet } from "@remix-run/react";
+import { Outlet, useLocation } from "@remix-run/react";
 import { useState } from "react";
 import ChatHeader from "~/components/ChatHeader";
 import ChatSideBar from "~/components/ChatSideBar";
 
-const FRIEND_LIST = {
-  user1: {
-    name: "ユーザー1",
-    latestComment: "これは改行されます。",
-  },
-  user2: {
-    name: "ユーザー2",
-    latestComment: "これは改行されます。",
-  },
-  user3: {
-    name: "ユーザー3",
-    latestComment: "これは改行されます。",
-  },
-};
-
 export default function ChatLayout() {
+  const location = useLocation();
   const [isSideOpen, setIsSideOpen] = useState(false);
   return (
     <>
-      <div>
-        <ChatHeader handleSideBarOpen={() => setIsSideOpen((prev) => !prev)} />
-      </div>
-      <div className="flex flex-row">
-        {isSideOpen && <ChatSideBar friendList={FRIEND_LIST} />}
-        <div className="w-full flex justify-center mb-4">
-          <div className="w-10/12">
-            <Outlet />
+      <div
+        className="flex flex-row w-full"
+        style={{
+          viewTransitionName: isSideOpen ? "chat-to-chat" : "",
+        }}
+      >
+        {isSideOpen && (
+          <ChatSideBar
+            handleSideBarOpen={() => setIsSideOpen((prev) => !prev)}
+          />
+        )}
+        <div className="w-full">
+          <div>
+            <ChatHeader
+              handleSideBarOpen={(isOpen: boolean) => setIsSideOpen(isOpen)}
+              isSideBarIconShow={!isSideOpen && location.pathname !== "/chat/"}
+            />
+          </div>
+          <div className="w-full flex justify-center mb-4">
+            <div className="w-10/12">
+              <Outlet />
+            </div>
           </div>
         </div>
       </div>

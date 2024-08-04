@@ -5,25 +5,6 @@
 @layer base {
   * {
     @apply border-border;
-    @view-transition {
-      navigation: auto;
-    }
-    @keyframes _fade-in {
-      0% {
-        opacity: 0;
-      }
-    }
-    @keyframes _fade-out {
-      to {
-        opacity: 0;
-      }
-    }
-    ::view-transition-old(root) {
-      animation: _fade-out 0.15s 60ms both;
-    }
-    ::view-transition-new(root) {
-      animation: _fade-in 0.15s 60ms both;
-    }
   }
   :root {
     --background: 0 0% 100%;
@@ -83,3 +64,45 @@
     @apply bg-background text-foreground;
   }
 }
+
+@view-transition {
+  navigation: auto;
+}
+@keyframes _fade-in {
+  0% {
+    opacity: 0;
+  }
+}
+@keyframes _fade-out {
+  to {
+    opacity: 0;
+  }
+}
+@keyframes _slide-out-to-left {
+  from {
+    left: 0%;
+  }
+  to {
+    left: -100%;
+  }
+}
+@keyframes _slide-in-from-right {
+  from {
+    left: 100%;
+  }
+  to {
+    left: 0%;
+  }
+}
+::view-transition-old(root) {
+  animation: _fade-out 0.15s 60ms both;
+}
+::view-transition-new(root) {
+  animation: _fade-in 0.15s 60ms both;
+}
+/* ::view-transition-old(chat-to-chat) { */
+/*   animation: _slide-out-to-left 0.15s 60ms both; */
+/* } */
+/* ::view-transition-new(chat-to-chat) { */
+/*   animation: _slide-in-from-right 0.15s 60ms both; */
+/* } */

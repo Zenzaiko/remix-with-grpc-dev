@@ -13,6 +13,7 @@ import type { LoaderFunctionArgs } from "react-router";
 import { ChatReq } from "services/chat_connect";
 import { Msg, type Req } from "services/chat_pb";
 import MessageBox from "~/components/MessageBox";
+import { CHANNELS_LIST } from "./chat._index";
 
 export const clientLoader = async ({ params }: LoaderFunctionArgs) => {
   const transport = createGrpcWebTransport({
@@ -68,13 +69,14 @@ export default function ChatArea() {
   const { stream } = useLoaderData<typeof clientLoader>();
   const [messages, setMessages] = useState<Msg[]>([]);
   const params = useParams();
+  const targetChannelData = CHANNELS_LIST.find(
+    (channel) => channel.channel.toString() === params.channel
+  );
 
   useEffect(() => {
-    console.debug("ここまでは走ってる");
     const fetchMessages = async () => {
       const asyncStream = stream as unknown as AsyncIterable<Msg>;
       for await (const msg of asyncStream) {
-        console.debug(msg);
         setMessages((prev) => [...prev, msg]);
       }
     };
@@ -84,21 +86,24 @@ export default function ChatArea() {
 
   return (
     <>
-      <div className="border shadow">
-        <div className="h-96 p-6">
-          <div className="w-full h-full bg-zinc-100 opacity-75 flex flex-row justify-around">
-            <img
-              src="/public/images/animal_kiboshi_iwa_hyrax.png"
-              alt="MyAvatar"
-            />
-            <img
-              src="/public/images/animal_wani_water.png"
-              alt="Friend"
-              style={{
-                viewTransitionName: `friend-pic-${params.channel}`,
-              }}
-            />
-          </div>
+      <div className="w-full border shadow">
+        <div className="h-96 p-6 w-full bg-zinc-100 opacity-75 flex flex-row justify-around">
+          <img
+            src="/public/images/animal_kiboshi_iwa_hyrax.png"
+            alt="MyAvatar"
+            style={{
+              viewTransitionName: `my-pic-${params.channel}`,
+            }}
+            className="max-w-1/2 h-auto"
+          />
+          <img
+            src={targetChannelData?.image}
+            alt="Friend"
+            style={{
+              viewTransitionName: `friend-pic-${params.channel}`,
+            }}
+            className="max-w-1/2 h-auto"
+          />
         </div>
         <div className="flex flex-col gap-4 px-4">
           {messages.map((msg) => (

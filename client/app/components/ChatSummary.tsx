@@ -3,6 +3,7 @@ import { Link, unstable_useViewTransitionState } from "@remix-run/react";
 type Props = {
   channel: number;
   comment: string;
+  image: string;
 };
 
 export default function ChatSummary(props: Props) {
@@ -15,7 +16,7 @@ export default function ChatSummary(props: Props) {
       <Link to={TO} unstable_viewTransition>
         <div className="border bg-zinc-100 opacity-75 ">
           <img
-            src="/public/images/animal_wani_water.png"
+            src={props.image}
             alt="Friend"
             style={{
               viewTransitionName: `friend-pic-${props.channel}`,
