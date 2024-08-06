@@ -110,7 +110,11 @@ export default function ChatArea() {
 				<div className="flex flex-col gap-4 px-4">
 					{messages.map((msg) => (
 						<div key={msg.timestamp} className="w-full flex justify-start">
-							<MessageBox name={msg.userName} comment={msg.content} />
+							<MessageBox
+								name={msg.userName}
+								timestamp={msg.timestamp}
+								comment={msg.content}
+							/>
 						</div>
 					))}
 				</div>
