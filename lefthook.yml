@@ -1,10 +1,16 @@
 #
-# Runs Biome formatting and linting before each commit
+# Runs formatting linting, and tests before each commit
 #
 
 pre-commit:
+  piped: true
   commands:
-    check:
+    vitest test:
+      root: client/
+      glob: "*.{js,ts,cjs,mjs,d.cts,d.mts,jsx,tsx,json,jsonc}"
+      run: npx vitest --run
+    biome check:
+      root: client/
       glob: "*.{js,ts,cjs,mjs,d.cts,d.mts,jsx,tsx,json,jsonc}"
       run: npx @biomejs/biome check --write --no-errors-on-unmatched --files-ignore-unknown=true --colors=off {staged_files}
       stage_fixed: true

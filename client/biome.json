@@ -10,7 +10,7 @@
 		}
 	},
 	"files": {
-		"include": ["app/**/*.ts", "app/**/*.tsx"],
+		"include": ["app/"],
 		"ignore": ["entry.*.tsx"]
 	}
 }
