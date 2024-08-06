@@ -7,13 +7,13 @@ import { useEffect } from "react";
 // };
 
 export default function Index() {
-  const navigate = useNavigate();
-  useEffect(() => {
-    navigate("/login");
-  }, [navigate]);
-  return (
-    <>
-      <div>Index</div>
-    </>
-  );
+	const navigate = useNavigate();
+	useEffect(() => {
+		navigate("/login");
+	}, [navigate]);
+	return (
+		<>
+			<div>Index</div>
+		</>
+	);
 }

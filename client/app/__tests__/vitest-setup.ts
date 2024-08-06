@@ -6,14 +6,14 @@ import { vi } from "vitest";
 installGlobals();
 
 vi.mock("@remix-run/react", () => {
-  const useNavigate = vi.fn();
-  const form = vi
-    .fn()
-    .mockImplementation(({ children }: { children: React.ReactElement }) => {
-      return children;
-    });
-  return {
-    useNavigate,
-    Form: form,
-  };
+	const useNavigate = vi.fn();
+	const form = vi
+		.fn()
+		.mockImplementation(({ children }: { children: React.ReactElement }) => {
+			return children;
+		});
+	return {
+		useNavigate,
+		Form: form,
+	};
 });

@@ -6,7 +6,12 @@
   "scripts": {
     "build": "remix vite:build",
     "dev": "remix vite:dev",
-    "lint": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint .",
+    "lint": "biome lint",
+    "lint:write": "biome lint --write",
+    "format": "biome format",
+    "format:write": "biome format --write",
+    "check": "biome check",
+    "check:write": "biome check --write",
     "start": "remix-serve ./build/server/index.js",
     "typecheck": "tsc",
     "gen:services": "buf generate ../proto/greeting.proto",
@@ -30,6 +35,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.52.1",
+    "sirv-cli": "^2.0.2",
     "tailwind-merge": "^2.4.0",
     "tailwindcss-animate": "^1.0.7",
     "zod": "^3.23.8"
